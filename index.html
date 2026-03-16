@@ -136,6 +136,7 @@
       <h2 style="background:#2e7d32;color:white;padding:6px;">Your Existing Funds / 您现有的资金</h2>
       <div class="row"><label>Saving / Fixed Deposits / 储蓄与定期存款</label><input class="numeric-input" id="savings" type="text" inputmode="decimal" value="0"><div class="output" id="savingsOut">RM 0</div></div>
       <div class="row"><label>EPF (Provident Fund) / 公积金</label><input class="numeric-input" id="epf" type="text" inputmode="decimal" value="0"><div class="output" id="epfOut">RM 0</div></div>
+      <div class="row"><label>Life Protection / 人寿保障</label><input class="numeric-input" id="life" type="text" inputmode="decimal" value="0"><div class="output" id="lifeOut">RM 0</div></div>
       <div class="row"><div style="width: 55%; border-bottom: 1px solid #ccc;"><input type="text" placeholder="Other Assets / 其他资产 (填写)" id="otherFundLabel" class="cap-input" style="width: 100%; border:none; text-align: left; padding:0; font-size:12px !important;"></div><input class="numeric-input" id="otherFunds" type="text" inputmode="decimal" value="0"><div class="output" id="otherFundsOut">RM 0</div></div>
     </div>
 
@@ -233,9 +234,10 @@
         const totalNeeded = admin + debt + familyTotal;
         document.getElementById('grandTotal').textContent = fmt(totalNeeded);
 
-        const existing = val('savings') + val('epf') + val('otherFunds');
+        const existing = val('savings') + val('epf') + val('life') + val('otherFunds');
         document.getElementById('savingsOut').textContent = fmt(val('savings'));
         document.getElementById('epfOut').textContent = fmt(val('epf'));
+	document.getElementById('lifeOut').textContent = fmt(val('life'));
         document.getElementById('otherFundsOut').textContent = fmt(val('otherFunds'));
         document.getElementById('existingTotal').textContent = fmt(existing);
         
@@ -288,7 +290,8 @@
                     `*(B) TOTAL EXISTING FUNDS / 现有资金总计 = ${document.getElementById('existingTotal').innerText}*\n` +
                     `1. Saving & FD / 储蓄与定存 = ${document.getElementById('savingsOut').innerText}\n` +
                     `2. EPF / 公积金 = ${document.getElementById('epfOut').innerText}\n` +
-                    `3. ${otherAssetLabel} = ${document.getElementById('otherFundsOut').innerText}\n\n` +
+		    `3. Life Protection / 人寿保障 = ${document.getElementById('lifeOut').innerText}\n` +
+                    `4. ${otherAssetLabel} = ${document.getElementById('otherFundsOut').innerText}\n\n` +
                     `*(C) TOTAL FUNDING GAP (A - B) / 资金缺口*\n` +
                     `= *${document.getElementById('fundingGap').innerText}*\n\n` +
                     `Feel free to let me know if you have any questions. \n` +
